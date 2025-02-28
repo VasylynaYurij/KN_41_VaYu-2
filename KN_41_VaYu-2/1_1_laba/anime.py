@@ -6,12 +6,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # Відкриваємо anime ID 54595
-    anime_data = jikan.anime(54595)  # Тепер без параметра extension='episodes'
+    anime_data = jikan.anime(54595)  
     
-    # Показуємо інформацію про епізоди
     a = str()
-    for episode in anime_data["episodes"]:  # Взяти список епізодів
+    for episode in anime_data["episodes"]:  
         a += f"<p>Епізод {episode['mal_id']} з назвою: {episode['title']} має оцінку {episode['score']}<p>"
     
     return a
