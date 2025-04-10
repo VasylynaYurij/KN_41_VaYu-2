@@ -1,50 +1,49 @@
-# Перевірка assert
+# Перевірка числа
 number = -1
-try:
-    assert number > 0, "Число має бути більшим за нуль!"
-except AssertionError as e:
-    print(f"Помилка: {e}")
+if number <= 0:
+    print("Помилка: Число має бути більшим за нуль!")
+else:
+    print(f"Число: {number}")
 
 # Введення числа з клавіатури
 a = input("Введіть число: ")
-try:
-    assert a.isdigit(), "Потрібно ввести число!"
+if not a.isdigit():
+    print("Помилка: Потрібно ввести число!")
+else:
     print(f"Введене число: {a}")
-except AssertionError as e:
-    print(f"Помилка: {e}")
 
-# Клас Figure з assert для валідації
+# Клас Figure для перевірки типу та довжини
 types_allowed = ["квадрат", "прямокутник", "трикутник"]
 class Figure:
     def __init__(self, type, length) -> None:
-        try:
-            assert length > 0, "Довжина має бути більшою за 0!"
-            assert type in types_allowed, f"Дозволені фігури: {', '.join(types_allowed)}"
+        if length <= 0:
+            print("Помилка: Довжина має бути більшою за 0!")
+        elif type not in types_allowed:
+            print(f"Помилка: Дозволені фігури: {', '.join(types_allowed)}")
+        else:
             self.type = type
             self.length = length
-        except AssertionError as e:
-            print(f"Помилка: {e}")
+            print(f"Фігура: {self.type}, Довжина: {self.length}")
 
 # Перевірка створення об'єктів
 fig1 = Figure("квадрат", 1)
-fig2 = Figure("трапеція", 12)  # Викине помилку
-fig3 = Figure("квадрат", 0)  # Викине помилку
+fig2 = Figure("трапеція", 12)  # Помилка
+fig3 = Figure("квадрат", 0)  # Помилка
 
-# Клас Name з ValueError для перевірки імені та хобі
+# Клас Name для перевірки імені та хобі
 names_allowed = ["Богдан", "Анонім", "Юрій"]
 class Name:
     def __init__(self, name, hobby) -> None:
-        try:
-            if name not in names_allowed:
-                raise ValueError(f"Дозволені імена: {', '.join(names_allowed)}")
-            if not hobby:
-                raise ValueError("Хобі не може бути порожнім!")
+        if name not in names_allowed:
+            print(f"Помилка: Дозволені імена: {', '.join(names_allowed)}")
+        elif not hobby:
+            print("Помилка: Хобі не може бути порожнім!")
+        else:
             self.name = name
             self.hobby = hobby
-        except ValueError as e:
-            print(f"Помилка: {e}")
+            print(f"Ім'я: {self.name}, Хобі: {self.hobby}")
 
 # Перевірка створення об'єктів
 person1 = Name("Юрій", "Програмування")
-person2 = Name("Бодько", "")  # Викине помилку
-person3 = Name("Артем", "Музика")  # Викине помилку
+person2 = Name("Бодько", "")  # Помилка
+person3 = Name("Артем", "Музика")  # Помилка
