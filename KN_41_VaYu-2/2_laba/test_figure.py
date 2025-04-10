@@ -34,5 +34,5 @@ class TestFigure(unittest.TestCase):
             Figure("коло", 1) 
 
 
-if name == '__main__':
+if __name__ == '__main__':
     unittest.main()
