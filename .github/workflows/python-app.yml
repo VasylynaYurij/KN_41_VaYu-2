@@ -11,7 +11,6 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -33,10 +32,10 @@ jobs:
         flake8 . --exclude=my_env --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --exclude=my_env --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: Run Python file
+    - name: Run Python script
       run: |
-        python script.py
+        python KN_41_VaYu-2/script.py  # Вказуємо шлях до скрипта
 
     - name: Test with pytest
       run: |
-        pytest
+        pytest KN_41_VaYu-2/test_requests.py  # Вказуємо шлях до конкретного тесту
