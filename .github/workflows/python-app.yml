@@ -38,4 +38,4 @@ jobs:
 
     - name: Test with pytest only on KN-41_VaYu-2
       run: |
-        pytest KN-41_VaYu-2/
+        pytest KN_41_VaYu-2/
