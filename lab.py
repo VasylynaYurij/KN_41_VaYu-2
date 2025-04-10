@@ -1,24 +1,50 @@
-# simple_calculator.py
+# Перевірка assert
+number = -1
+try:
+    assert number > 0, "Число має бути більшим за нуль!"
+except AssertionError as e:
+    print(f"Помилка: {e}")
 
-def add(a, b):
-    """Функція для додавання двох чисел."""
-    return a + b
+# Введення числа з клавіатури
+a = input("Введіть число: ")
+try:
+    assert a.isdigit(), "Потрібно ввести число!"
+    print(f"Введене число: {a}")
+except AssertionError as e:
+    print(f"Помилка: {e}")
 
-# main.py
-from simple_calculator import add
+# Клас Figure з assert для валідації
+types_allowed = ["квадрат", "прямокутник", "трикутник"]
+class Figure:
+    def __init__(self, type, length) -> None:
+        try:
+            assert length > 0, "Довжина має бути більшою за 0!"
+            assert type in types_allowed, f"Дозволені фігури: {', '.join(types_allowed)}"
+            self.type = type
+            self.length = length
+        except AssertionError as e:
+            print(f"Помилка: {e}")
 
-# Викликаємо функцію для тесту
-if __name__ == "__main__":
-    result = add(3, 5)
-    print(f"Результат додавання: {result}")
+# Перевірка створення об'єктів
+fig1 = Figure("квадрат", 1)
+fig2 = Figure("трапеція", 12)  # Викине помилку
+fig3 = Figure("квадрат", 0)  # Викине помилку
 
-# test_simple_calculator.py
+# Клас Name з ValueError для перевірки імені та хобі
+names_allowed = ["Богдан", "Анонім", "Юрій"]
+class Name:
+    def __init__(self, name, hobby) -> None:
+        try:
+            if name not in names_allowed:
+                raise ValueError(f"Дозволені імена: {', '.join(names_allowed)}")
+            if not hobby:
+                raise ValueError("Хобі не може бути порожнім!")
+            self.name = name
+            self.hobby = hobby
+        except ValueError as e:
+            print(f"Помилка: {e}")
 
-from simple_calculator import add
-
-def test_add():
-    """Тест для функції додавання"""
-    assert add(1, 2) == 3, "Додавання 1 + 2 має дорівнювати 3"
-    assert add(-1, 1) == 0, "Додавання -1 + 1 має дорівнювати 0"
-    assert add(0, 0) == 0, "Додавання 0 + 0 має дорівнювати 0"
-    assert add(-3, -2) == -5, "Додавання -3 + (-2) має дорівнювати -5"
+# Перевірка створення об'єктів
+person1 = Name("Юрій", "Програмування")
+person2 = Name("Бодько", "")  # Викине помилку
+person3 = Name("Артем", "Музика")  # Викине помилку
