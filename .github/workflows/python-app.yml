@@ -34,8 +34,8 @@ jobs:
 
     - name: Run Python script
       run: |
-        python KN_41_VaYu-2/script.py  # Вказуємо шлях до скрипта
+        python script.py
 
     - name: Test with pytest
       run: |
-        pytest KN_41_VaYu-2/test_requests.py  # Вказуємо шлях до конкретного тесту
+        pytest test_requests.py
