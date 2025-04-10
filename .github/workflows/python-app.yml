@@ -35,7 +35,7 @@ jobs:
 
     - name: Run Python file
       run: |
-        python script.py
+        python lab.py
 
     - name: Test with pytest
       run: |
