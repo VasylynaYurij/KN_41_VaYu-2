@@ -1,19 +1,38 @@
-from app import Figure
+import unittest
+from random import choice, randint
 
-def test_get_angles():
-    """Тестуємо чи правильно повертається кількість кутів фігури."""
-    fig = "трикутник"
-    triangle = Figure(fig, 1)
-    assert triangle.get_angles == 3, f"У {fig} є 3 кути!"
+from app import Figure 
 
-class Figure:
-    def __init__(self, type, sides):
-        self.type = type
-        self.sides = sides
+class TestFigure(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        """Виконається лише раз на початку тестів
+        """
+        pass
+    
+    def setUp(self) -> None:
+        """Виконується кожного разу коли запускається тест
+        """
+        self.figure = choice(Figure.FIGURES)
+        self.length = randint(1, 10)
+        self.obj = Figure(self.figure, self.length)
+        return super().setUp()
 
-    @property
-    def get_angles(self):
-        if self.type in ["квадрат", "прямокутник"]:
-            return 4
-        if self.type == "трикутник":
-            return 3
+    def tearDown(self) -> None:
+        del self.obj
+        return super().tearDown()
+
+    def test_figure_type(self):
+        print(f"Тестуємо вивід, має бути: {self.figure} == {self.obj.get_figure_type}")
+        self.assertEqual(self.figure, self.obj.get_figure_type, "Властивість get_figure_type повертає непривильну фігуру!")
+
+    def test_figure_lengh(self):
+        self.assertEqual(self.length, self.obj.get_figure_length, "Властивість get_figure_length повертає непривильну довжину!")
+    
+    def test_obj(self):
+        with self.assertRaises(AssertionError):
+            Figure("коло", 1) 
+
+
+if name == '__main__':
+    unittest.main()
