@@ -1,6 +1,10 @@
 name: Roxy Migurdia
 
 on:
+  workflow_dispatch:
+  schedule:
+       - cron: '0 10 * * 1'
+  
   push:
     branches: [ "main" ]
   pull_request:
@@ -38,4 +42,4 @@ jobs:
 
     - name: Test with pytest only on KN-41_VaYu-2
       run: |
-        pytest KN-41_VaYu-2/
+        pytest KN_41_VaYu-2/

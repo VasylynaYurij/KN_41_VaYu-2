@@ -1,0 +1,20 @@
+name: Simple Condition
+
+on:
+  workflow_dispatch:
+    inputs:
+      show:
+        description: "Введи yes або no"
+        required: true
+        default: "yes"
+
+jobs:
+  conditional-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Завжди показується
+        run: echo "Цей крок виконується завжди ✅"
+
+      - name: Показати секретне повідомлення
+        if: github.event.inputs.show == 'yes'
+        run: echo "🎉 Привіт! Ти вибрав показати це повідомлення"
