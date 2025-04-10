@@ -2,7 +2,7 @@ name: Roxy Migurdia
 
 on:
   workflow_dispatch:
- schedule:
+  schedule:
        - cron: '0 9 * * *'
   
   push:
