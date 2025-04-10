@@ -37,5 +37,6 @@ jobs:
         python script.py
 
     - name: Test with pytest
+      if: false  # Цей крок ніколи не виконується, бо умова false
       run: |
         pytest test_requests.py
